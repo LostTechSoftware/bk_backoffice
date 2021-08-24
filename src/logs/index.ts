@@ -1,0 +1,65 @@
+import { v4 as uuidv4 } from 'uuid'
+import { Severity, LoggerConfig, CoralogixLogger, Log } from 'coralogix-logger'
+
+CoralogixLogger.configure(
+  new LoggerConfig({
+    applicationName: 'application_name',
+    privateKey: 'private_key',
+    subsystemName: 'enviroment'
+  })
+)
+
+const logger = new CoralogixLogger('Logger')
+
+export default {
+  // Send warning log to Coralogix
+  warn: (data: string): void => {
+    const text = { data, request_id: uuidv4() }
+
+    console.log(text)
+
+    logger.addLog(
+      new Log({
+        severity: Severity.warning,
+        className: 'ConsoleLogger',
+        methodName: 'logger',
+        text
+      })
+    )
+  },
+
+  // Send error log to Coralogix
+  error: (data: string): void => {
+    const text = { data, request_id: uuidv4() }
+
+    console.log(text)
+
+    logger.addLog(
+      new Log({
+        severity: Severity.error,
+        className: 'ConsoleLogger',
+        methodName: 'logger',
+        text
+      })
+    )
+  },
+
+  // Send information log to Coralogix
+  info: (data: string): void => {
+    const text = { data, request_id: uuidv4() }
+
+    console.log(text)
+
+    logger.addLog(
+      new Log({
+        severity: Severity.info,
+        className: 'ConsoleLogger',
+        methodName: 'logger',
+        text
+      })
+    )
+  },
+
+  // Transform object in string with json stringify
+  beautify: (data: string): string => JSON.stringify(data, undefined, 2)
+}

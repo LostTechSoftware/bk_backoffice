@@ -1,23 +1,16 @@
-import { Schema, model, Document } from 'mongoose'
+import { Schema, model } from 'mongoose'
+import UserInterface from '../interfaces/models/UserInterface'
 
-interface UserInterface extends Document {
-  email?: string
-  name?: string
-  emailFormated(): string
-}
-
-const UserSchema = new Schema(
+const UserSchema = new Schema<UserInterface>(
   {
     name: String,
-    email: String,
+    email: {
+      type: String
+    }
   },
   {
-    timestamps: true,
+    timestamps: true
   }
 )
 
-UserSchema.methods.emailFormated = function (): void {
-  console.log(this.id, this.email)
-}
-
-export default model<UserInterface>('User', UserSchema)
+export default model('User', UserSchema)

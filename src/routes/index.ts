@@ -1,9 +1,9 @@
 import { Router } from 'express'
 
-import UserController from '../controllers/UserController'
+import GetNotifications from '../controllers/Notifications/GetNotifications'
 
 const routes = Router()
 
-routes.get('/users', UserController.index)
+routes.get('/notifications', GetNotifications.index)
 
 export default routes
