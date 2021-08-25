@@ -4,6 +4,7 @@ import { v4 as uuidv4 } from 'uuid'
 
 import LoggerRequestInterface from '../interfaces/middlewares/LoggerRequestInterface'
 import logs from '../logs'
+
 class Logger {
   public async index (app:Application): Promise<void> {
     app.all('*', (req:LoggerRequestInterface, res:Response, next:NextFunction): void => {

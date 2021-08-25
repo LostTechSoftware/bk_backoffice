@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import * as Sentry from '@sentry/node'
 import { Severity, LoggerConfig, CoralogixLogger, Log } from 'coralogix-logger'
 import getRequestId from '../getRequestId'
 
@@ -42,6 +44,9 @@ export default {
         text
       })
     )
+
+    Sentry.setTag('request_id', getRequestId())
+    Sentry.captureException(data)
   },
 
   // Send information log to Coralogix
@@ -61,5 +66,5 @@ export default {
   },
 
   // Transform object in string with json stringify
-  beautify: (data: string): string => JSON.stringify(data, undefined, 2)
+  beautify: (data: any): string => JSON.stringify(data, undefined, 2)
 }

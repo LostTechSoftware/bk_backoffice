@@ -1,6 +1,6 @@
 import httpContext from 'express-http-context'
 
-const getRequestId = (): void => {
+const getRequestId = (): string => {
   return httpContext.get('requestId')
 }
 
