@@ -1,5 +1,5 @@
-import { v4 as uuidv4 } from 'uuid'
 import { Severity, LoggerConfig, CoralogixLogger, Log } from 'coralogix-logger'
+import getRequestId from '../getRequestId'
 
 CoralogixLogger.configure(
   new LoggerConfig({
@@ -14,7 +14,7 @@ const logger = new CoralogixLogger('Logger')
 export default {
   // Send warning log to Coralogix
   warn: (data: string): void => {
-    const text = { data, request_id: uuidv4() }
+    const text = { data, request_id: getRequestId() }
 
     console.log(text)
 
@@ -30,7 +30,7 @@ export default {
 
   // Send error log to Coralogix
   error: (data: string): void => {
-    const text = { data, request_id: uuidv4() }
+    const text = { data, request_id: getRequestId() }
 
     console.log(text)
 
@@ -46,7 +46,7 @@ export default {
 
   // Send information log to Coralogix
   info: (data: string): void => {
-    const text = { data, request_id: uuidv4() }
+    const text = { data, request_id: getRequestId() }
 
     console.log(text)
 

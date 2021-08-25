@@ -2,9 +2,11 @@ import 'dotenv/config'
 import express from 'express'
 import cors from 'cors'
 import mongoose from 'mongoose'
+import httpContext from 'express-http-context'
 
 import routes from './routes'
-import logs from './middlewares/logs'
+import logsMiddlewares from './middlewares/logs'
+import logs from './logs'
 
 class App {
   public express: express.Application
@@ -20,7 +22,8 @@ class App {
   private middlewares (): void {
     this.express.use(express.json())
     this.express.use(cors())
-    logs.index(this.express)
+    this.express.use(httpContext.middleware)
+    logsMiddlewares.index(this.express)
   }
 
   private database (): void {
@@ -30,6 +33,8 @@ class App {
       useFindAndModify: false,
       useCreateIndex: true
     })
+
+    logs.info('Database connected')
   }
 
   private routes (): void {
