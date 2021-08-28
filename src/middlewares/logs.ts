@@ -8,7 +8,7 @@ import logs from '../logs'
 class Logger {
   public async index (app:Application): Promise<void> {
     app.all('*', (req:LoggerRequestInterface, res:Response, next:NextFunction): void => {
-      const requestId = req.headers['x-request-id'] || uuidv4()
+      const requestId = req.headers['request_id'] || uuidv4()
 
       req.requestId = requestId
 
