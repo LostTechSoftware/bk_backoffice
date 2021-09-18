@@ -1,10 +1,11 @@
 import { Request, Response } from 'express'
-import logs from '../../logs'
-import Notification from '../../models/notification'
+import logs from '@logs/index'
+import Notification from '@models/notification'
 
 class GetNotification {
   public async index (req: Request, res: Response): Promise<Response> {
     try {
+      logs.info('Getting notifications')
       const notifications = await Notification.find()
 
       return res.status(200).json(notifications)

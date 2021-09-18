@@ -1,6 +1,6 @@
 import { Router } from 'express'
 
-import GetNotifications from '../controllers/Notifications/GetNotifications'
+import GetNotifications from '@controllers/Notifications/GetNotifications'
 
 const routes = Router()
 

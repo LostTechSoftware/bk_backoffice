@@ -1,5 +1,5 @@
 import app from './app'
-import logs from './logs'
+import logs from '@logs/index'
 
 const PORT = process.env.PORT || 3003
 

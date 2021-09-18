@@ -6,9 +6,11 @@ import httpContext from 'express-http-context'
 import rateLimit from 'express-rate-limit'
 import helmet from 'helmet'
 
-import routes from './routes'
+import notifications from './routes/Notifications'
+import users from './routes/Users'
+
 import logsMiddlewares from './middlewares/logs'
-import logs from './logs'
+import logs from '@logs/index'
 import sentry from './services/sentry'
 import consumers from './services/consumers'
 
@@ -73,7 +75,8 @@ class App {
   }
 
   private routes (): void {
-    this.express.use(routes)
+    this.express.use(notifications)
+    this.express.use(users)
   }
 }
 

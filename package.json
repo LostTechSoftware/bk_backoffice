@@ -40,6 +40,7 @@
     "fs": "0.0.1-security",
     "helmet": "4.2.0",
     "js-logger": "1.6.1",
+    "jsonwebtoken": "^8.5.1",
     "moment": "2.29.1",
     "mongodb": "3.6.5",
     "mongoose": "5.12.3",
@@ -52,12 +53,11 @@
   },
   "devDependencies": {
     "@babel/core": "7.13.10",
-    "@babel/preset-env": "7.13.10",
     "@commitlint/cli": "12.1.1",
     "@commitlint/config-conventional": "12.1.1",
     "@shelf/jest-mongodb": "1.2.4",
     "@types/cors": "2.8.6",
-    "@types/express": "4.17.2",
+    "@types/express": "4.17.6",
     "@types/factory-girl": "5.0.4",
     "@types/jest": "26.0.20",
     "@types/jwt-simple": "0.5.33",
@@ -85,7 +85,10 @@
     "lint-staged": "10.4.0",
     "madge": "4.0.2",
     "prettier": "2.3.2",
-    "pretty-quick": "3.1.0"
+    "pretty-quick": "3.1.0",
+    "ts-node-dev": "1.0.0-pre.49",
+    "tsconfig-paths": "3.9.0",
+    "typescript": "3.9.5"
   },
   "husky": {
     "hooks": {

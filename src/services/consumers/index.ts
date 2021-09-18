@@ -1,7 +1,7 @@
 import AWS from 'aws-sdk'
 import { Consumer } from 'sqs-consumer'
-import validatorJson from '../../../../ms_ai/src/validators/validatorJson'
-import logs from '../../logs'
+import validatorJson from '@validator/validatorJson'
+import logs from '@logs/index'
 
 AWS.config.update({ region: 'us-east-2' })
 const sqs = new AWS.SQS({ apiVersion: '2012-11-05', region: 'us-east-2' })
