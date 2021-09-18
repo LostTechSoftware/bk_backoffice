@@ -6,14 +6,14 @@ import httpContext from 'express-http-context'
 import rateLimit from 'express-rate-limit'
 import helmet from 'helmet'
 
-import notifications from './routes/Notifications'
-import users from './routes/Users'
-import reports from './routes/Reports'
+import notifications from '@routes/Notifications'
+import users from '@routes/Users'
+import reports from '@routes/Reports'
 
-import logsMiddlewares from './middlewares/logs'
+import logsMiddlewares from '@middlewares/logs'
 import logs from '@logs/index'
-import sentry from './services/sentry'
-import consumers from './services/consumers'
+import sentry from '@services/sentry'
+import consumers from '@services/consumers'
 
 class App {
   public express: express.Application
