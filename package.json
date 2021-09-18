@@ -14,6 +14,7 @@
   ],
   "scripts": {
     "staging": "nodemon ./src/index.ts",
+    "start": "node -r ts-node/register -r tsconfig-paths/register",
     "eslint:check": "eslint 'src/**/*.{ts,tsx}' --fix",
     "format": "prettier \"./src/**/*.ts\" --write",
     "build": "sucrase ./src -d ./dist --transforms typescript,imports",
