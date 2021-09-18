@@ -1,6 +1,7 @@
 import { Response } from 'express'
 import logs from '@logs/index'
 import User from '@models/user'
+import BlockComments from '@models/blockComments'
 import RequestInterface from '@interfaces/Request'
 import NotFoundError from '@errors/NotFoundError'
 
@@ -9,8 +10,10 @@ class BlockUsers {
     try {
       const { body, employee } = req
 
-      const { UserId } = body
+      const { UserId, comment } = body
       const { id: EmployeeId } = employee
+
+      if (!UserId || !comment) throw new NotFoundError('Comment and UserId is required')
 
       logs.info(`[BlockUsers] Employee: ${EmployeeId} UserId: ${UserId}`)
 
@@ -19,11 +22,15 @@ class BlockUsers {
       if (!userToBlock) throw new NotFoundError('User not found')
 
       await userToBlock.block()
+      await BlockComments.create({ data: comment, EmployeeId, UserId })
 
-      return res.status(200).json({ error: false, message: `User ${UserId} is blockeds` })
-    } catch (err) {
-      logs.error(err)
-      return res.status(400).json('Error in block this user, contact FoodZilla')
+      return res.status(200).json({ error: false, message: `User ${UserId} is blocked with successful` })
+    } catch (error) {
+      logs.error(error)
+      return res.status(error.status).json({
+        name: error.name,
+        message: error.message
+      })
     }
   }
 }

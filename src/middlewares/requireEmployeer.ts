@@ -33,9 +33,11 @@ class RequireEmployeer {
 
         return next()
       })
-    } catch (error) {
-      console.log(error)
-      return res.status(400).json(error)
+    } catch ({ name, message, status }) {
+      return res.status(status).json({
+        name,
+        message
+      })
     }
   }
 }
