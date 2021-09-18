@@ -13,7 +13,7 @@ class SendNotification {
 
       if (!body.title || !body.body) throw new ParamError('Title and Body is required to send or schedule notification')
 
-      const notification = await Notification.create({ ...body })
+      const notification = await Notification.create({ ...body, EmployeeId: employee.id })
 
       return res.status(200).json(notification)
     } catch (error) {
