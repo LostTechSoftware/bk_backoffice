@@ -1,19 +1,29 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import mongoose from 'mongoose'
+
 interface Return {
   title: StringConstructor;
   body: StringConstructor;
-  schedule: DateConstructor;
-  tokens: [];
-  send: {
-      type: NumberConstructor;
-      default: 0
+  schedule: {
+    type: DateConstructor,
+    default: any
   };
-  convert: {
-      type: NumberConstructor,
-      default: 0
+  tokens: [];
+  receivers: {
+    type: NumberConstructor;
+    default: 0
+  };
+  clicks: {
+    type: NumberConstructor,
+    default: 0
   };
   sended: {
     type: BooleanConstructor,
     default: false
+  };
+  EmployeeId: {
+    type: any,
+    ref: 'Row'
   };
 }
 
@@ -21,19 +31,26 @@ const getproperties = (): Return => {
   return {
     title: String,
     body: String,
-    send: {
+    receivers: {
       type: Number,
       default: 0
     },
-    convert: {
+    clicks: {
       type: Number,
       default: 0
     },
-    schedule: Date,
+    schedule: {
+      type: Date,
+      default: new Date()
+    },
     tokens: [],
     sended: {
       type: Boolean,
       default: false
+    },
+    EmployeeId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Row'
     }
   }
 }

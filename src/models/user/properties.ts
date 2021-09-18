@@ -1,11 +1,11 @@
 interface Return {
     name: StringConstructor;
     email: {
-        type: StringConstructor;
+      type: StringConstructor;
     };
     blocked: {
-        type: BooleanConstructor,
-        default:false
+      type: BooleanConstructor,
+      default:false
     };
 }
 

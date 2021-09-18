@@ -1,12 +1,12 @@
 interface Return {
     name: StringConstructor;
     email: {
-        type: StringConstructor,
-        required: true
+      type: StringConstructor,
+      required: true
     };
     password: {
-        type: StringConstructor,
-        select: false
+      type: StringConstructor,
+      select: false
     };
     twoFactorCode: {
       type: NumberConstructor,

@@ -17,17 +17,28 @@ class BlockUsers {
 
       logs.info(`[BlockUsers] Employee: ${EmployeeId} UserId: ${UserId}`)
 
-      const userToBlock = await User.findById(UserId)
+      if (['object'].includes(typeof UserId)) {
+        for (const id of UserId) {
+          const userToBlock = await User.findById(id)
 
-      if (!userToBlock) throw new NotFoundError('User not found')
+          if (!userToBlock) throw new NotFoundError('User not found')
 
-      await userToBlock.block()
-      await BlockComments.create({ data: comment, EmployeeId, UserId })
+          await userToBlock.block()
+          await BlockComments.create({ data: comment, EmployeeId, UserId: id })
+        }
+      } else {
+        const userToBlock = await User.findById(UserId)
+
+        if (!userToBlock) throw new NotFoundError('User not found')
+
+        await userToBlock.block()
+        await BlockComments.create({ data: comment, EmployeeId, UserId })
+      }
 
       return res.status(200).json({ error: false, message: `User ${UserId} is blocked with successful` })
     } catch (error) {
       logs.error(error)
-      return res.status(error.status).json({
+      return res.status(error.status || 400).json({
         name: error.name,
         message: error.message
       })

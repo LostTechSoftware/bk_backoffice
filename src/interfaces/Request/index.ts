@@ -3,6 +3,7 @@ import { Request } from 'express'
 interface employee {
     id?: string
     _id?: string
+    name: string
 }
 
 interface user {

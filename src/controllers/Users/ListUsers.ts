@@ -1,18 +1,19 @@
 import { Response } from 'express'
 import logs from '@logs/index'
-import Notification from '@models/notification'
 import RequestInterface from '@interfaces/Request'
+import User from '@models/user'
 
-class GetNotification {
+class ListUsers {
   public async index (req: RequestInterface, res: Response): Promise<Response> {
     try {
-      const { employee } = req
+      const { employee, params } = req
+      const { id } = params
 
-      logs.info(`Getting all notifications for employee ${employee.name}`)
+      logs.info(`Getting all users for employee ${employee.name}`)
 
-      const notifications = await Notification.find()
+      const users = id ? await User.findById(id) : await User.find()
 
-      return res.status(200).json(notifications)
+      return res.status(200).json({ error: false, users })
     } catch (error) {
       logs.error(error)
       return res.status(error.status || 400).json({
@@ -23,4 +24,4 @@ class GetNotification {
   }
 }
 
-export default new GetNotification()
+export default new ListUsers()

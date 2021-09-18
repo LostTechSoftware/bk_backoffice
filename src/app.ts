@@ -8,6 +8,7 @@ import helmet from 'helmet'
 
 import notifications from './routes/Notifications'
 import users from './routes/Users'
+import reports from './routes/Reports'
 
 import logsMiddlewares from './middlewares/logs'
 import logs from '@logs/index'
@@ -77,6 +78,7 @@ class App {
   private routes (): void {
     this.express.use(notifications)
     this.express.use(users)
+    this.express.use(reports)
   }
 }
 
