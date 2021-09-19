@@ -9,11 +9,11 @@ class ListUsers {
   public async index (req: RequestInterface, res: Response): Promise<Response> {
     try {
       const { employee, params } = req
-      const { id } = params
+      const { id, limit, offset } = params
 
       logs.info(`Getting all users for employee ${employee.name}`)
 
-      const users = id ? await User.findById(id) : await User.find()
+      const users = id ? await User.findById(id) : await User.find().skip(parseFloat(offset) || 0).limit(parseFloat(limit) || 10)
 
       const details = []
 

@@ -8,6 +8,8 @@ const routes = Router()
 
 routes.post('/block', RequireEmployeer.index, BlockUsers.index)
 
-routes.get('/users/:id?', RequireEmployeer.index, ListUsers.index)
+routes.get('/users/:limit?/:offset?', RequireEmployeer.index, ListUsers.index)
+
+routes.get('/user/:id', RequireEmployeer.index, ListUsers.index)
 
 export default routes
