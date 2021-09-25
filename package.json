@@ -17,6 +17,8 @@
     "start": "node -r ts-node/register -r tsconfig-paths/register",
     "eslint:check": "eslint 'src/**/*.{ts,tsx}' --fix",
     "format": "prettier \"./src/**/*.ts\" --write",
+    "postinstall": "tsc",
+    "watch-ts": "tsc -w",
     "build": "sucrase ./src -d ./dist --transforms typescript,imports",
     "console:staging": "nodemon --experimental-repl-await ./src/console.js",
     "console:prod": "node --experimental-repl-await ./src/console.js"
@@ -53,7 +55,7 @@
     "sucrase": "3.20.1",
     "ts-node": "10.2.1",
     "tsconfig-paths": "3.9.0",
-    "typescript": "4.3.5"
+    "typescript": "4.4.3"
   },
   "devDependencies": {
     "@babel/core": "7.13.10",
@@ -90,8 +92,7 @@
     "madge": "4.0.2",
     "prettier": "2.3.2",
     "pretty-quick": "3.1.0",
-    "ts-node-dev": "1.0.0-pre.49",
-    "typescript": "3.9.5"
+    "ts-node-dev": "1.0.0-pre.49"
   },
   "husky": {
     "hooks": {
